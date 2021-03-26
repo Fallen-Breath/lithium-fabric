@@ -109,6 +109,9 @@ public class LithiumConfig {
 
     @Category("world")
     public static class WorldConfig {
+        @Option("block_entity_collections")
+        public boolean blockEntityCollections = true;
+
         @Option("use_fast_explosions")
         public boolean useFastExplosions = true;
 
