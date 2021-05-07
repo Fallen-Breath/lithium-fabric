@@ -35,6 +35,7 @@ public abstract class WorldMixin implements IWorld {
     @Final
     public List<BlockEntity> blockEntities;
 
+    @Mutable
     @Shadow
     @Final
     public List<BlockEntity> tickingBlockEntities;
@@ -59,6 +60,7 @@ public abstract class WorldMixin implements IWorld {
         this.blockEntities = this.blockEntities$lithium;
 
         this.unloadedBlockEntities = new HashedReferenceList<>(this.unloadedBlockEntities);
+        this.tickingBlockEntities = new BlockEntityList(this.tickingBlockEntities, false);
 
         this.pendingBlockEntities$lithium = new BlockEntityList(this.pendingBlockEntities, true);
         this.pendingBlockEntities = this.pendingBlockEntities$lithium;
