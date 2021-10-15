@@ -166,7 +166,7 @@ public class LithiumHashPalette<T> implements Palette<T> {
         }
     }
 
-    public int getSize() {
+    public int getSizeLithium() {
         return this.size;
     }
 
