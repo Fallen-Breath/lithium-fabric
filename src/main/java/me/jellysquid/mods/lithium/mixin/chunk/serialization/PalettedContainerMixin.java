@@ -85,7 +85,7 @@ public abstract class PalettedContainerMixin<T> {
             palette = ((LithiumHashPalette<T>) this.palette);
 
             // The palette only contains the default block, so don't re-pack
-            if (palette.getSize() == 1 && palette.getByIndex(0) == this.defaultValue) {
+            if (palette.getSize$lhp() == 1 && palette.getByIndex(0) == this.defaultValue) {
                 dataArray = EMPTY_PALETTE_DATA;
             }
         }
@@ -98,11 +98,11 @@ public abstract class PalettedContainerMixin<T> {
             ((CompactingPackedIntegerArray) this.data).compact(this.palette, compactedPalette, array);
 
             // If the palette didn't change during compaction, do a simple copy of the data array
-            if (palette != null && palette.getSize() == compactedPalette.getSize() && this.paletteSize == Math.max(4, MathHelper.log2DeBruijn(palette.getSize()))) { // paletteSize can de-sync from palette - see https://github.com/CaffeineMC/lithium-fabric/issues/279
+            if (palette != null && palette.getSize$lhp() == compactedPalette.getSize$lhp() && this.paletteSize == Math.max(4, MathHelper.log2DeBruijn(palette.getSize$lhp()))) { // paletteSize can de-sync from palette - see https://github.com/CaffeineMC/lithium-fabric/issues/279
                 dataArray = this.data.getStorage().clone();
             } else {
                 // Re-pack the integer array as the palette has changed size
-                int size = Math.max(4, MathHelper.log2DeBruijn(compactedPalette.getSize()));
+                int size = Math.max(4, MathHelper.log2DeBruijn(compactedPalette.getSize$lhp()));
                 PackedIntegerArray copy = new PackedIntegerArray(size, 4096);
 
                 for (int i = 0; i < array.length; ++i) {
