@@ -1,0 +1,20 @@
+{
+  "type" : "minecraft:all_of",
+  "definitions" : [
+    {
+      "type" : "minecraft:game_rules",
+      "rules" : {
+        "spawn_mobs" : false,
+        "random_tick_speed" : 3
+      }
+    },
+    {
+      "type" : "minecraft:time_of_day",
+      "time" : 12000
+    },
+    {
+      "type" : "minecraft:weather",
+      "weather" : "clear"
+    }
+  ]
+}

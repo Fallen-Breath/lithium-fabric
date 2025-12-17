@@ -1,16 +1,16 @@
 plugins {
     id("java")
-    id("fabric-loom") version ("1.14-SNAPSHOT") apply (false)
+    id("net.fabricmc.fabric-loom") version ("1.14-SNAPSHOT") apply (false)
     id("me.modmuss50.mod-publish-plugin") version ("0.8.1") apply (false)
 
 }
 
 // Fabric: https://fabricmc.net/develop/
 // Neoforge: https://neoforged.net/
-val MINECRAFT_VERSION by extra { "1.21.11" } //MUST manually update fabric.mod.json and neoforge.mods.toml
+val MINECRAFT_VERSION by extra { "1.21.11_unobfuscated" } //MUST manually update fabric.mod.json and neoforge.mods.toml
 val NEOFORGE_VERSION by extra { "21.11.0-beta" }
 val FABRIC_LOADER_VERSION by extra { "0.18.2" }
-val FABRIC_API_VERSION by extra { "0.139.4+1.21.11" }
+val FABRIC_API_VERSION by extra { "0.139.4+1.21.11_unobfuscated" }
 
 // This value can be set to null to disable Parchment.
 val PARCHMENT_VERSION by extra { null }
@@ -92,7 +92,7 @@ subprojects {
 tasks.register("lithiumPublish") {
     when (val platform = providers.environmentVariable("PLATFORM").orNull) {
         "both" -> {
-            dependsOn(tasks.build, ":fabric:publishMods", ":neoforge:publishMods")
+            dependsOn(tasks.build, ":fabric:publishMods",)
         }
         "fabric", "forge" -> {
             dependsOn("${platform}:build", "${platform}:publish", "${platform}:publishMods")
